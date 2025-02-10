@@ -44,65 +44,68 @@
     </div>
 
     <script>
-        // 1. 新舊保單對比
-        const policyComparisonData = [
-            {
-                x: ['理賠額度', '保障項目', '保障年限'],
-                y: [20000, 1, 1], // 舊保單
-                type: 'bar',
-                name: '舊保單',
-                marker: { color: '#36A2EB' }
-            },
-            {
-                x: ['理賠額度', '保障項目', '保障年限'],
-                y: [500000, 4, 10], // 新保單
-                type: 'bar',
-                name: '新保單',
-                marker: { color: '#FF6384' }
-            }
-        ];
-        const policyComparisonLayout = {
-            title: '新舊保單對比',
-            xaxis: { title: '項目' },
-            yaxis: { title: '數值' },
-            barmode: 'group'
-        };
-        Plotly.newPlot('policyComparisonChart', policyComparisonData, policyComparisonLayout);
+        // 確保 DOM 元素加載完成後再執行
+        document.addEventListener("DOMContentLoaded", function() {
+            // 1. 新舊保單對比
+            const policyComparisonData = [
+                {
+                    x: ['理賠額度', '保障項目', '保障年限'],
+                    y: [20000, 1, 1], // 舊保單
+                    type: 'bar',
+                    name: '舊保單',
+                    marker: { color: '#36A2EB' }
+                },
+                {
+                    x: ['理賠額度', '保障項目', '保障年限'],
+                    y: [500000, 4, 10], // 新保單
+                    type: 'bar',
+                    name: '新保單',
+                    marker: { color: '#FF6384' }
+                }
+            ];
+            const policyComparisonLayout = {
+                title: '新舊保單對比',
+                xaxis: { title: '項目' },
+                yaxis: { title: '數值' },
+                barmode: 'group'
+            };
+            Plotly.newPlot('policyComparisonChart', policyComparisonData, policyComparisonLayout);
 
-        // 2. 年長者意外風險趨勢
-        const riskByAgeData = [
-            {
-                x: [40, 50, 60, 70, 80],
-                y: [10, 15, 25, 35, 50],
-                type: 'scatter',
-                mode: 'lines+markers',
-                name: '意外風險 (%)',
-                line: { color: '#FF6384' }
-            }
-        ];
-        const riskByAgeLayout = {
-            title: '年長者意外風險趨勢',
-            xaxis: { title: '年齡' },
-            yaxis: { title: '意外風險 (%)' }
-        };
-        Plotly.newPlot('riskByAgeChart', riskByAgeData, riskByAgeLayout);
+            // 2. 年長者意外風險趨勢
+            const riskByAgeData = [
+                {
+                    x: [40, 50, 60, 70, 80],
+                    y: [10, 15, 25, 35, 50],
+                    type: 'scatter',
+                    mode: 'lines+markers',
+                    name: '意外風險 (%)',
+                    line: { color: '#FF6384' }
+                }
+            ];
+            const riskByAgeLayout = {
+                title: '年長者意外風險趨勢',
+                xaxis: { title: '年齡' },
+                yaxis: { title: '意外風險 (%)' }
+            };
+            Plotly.newPlot('riskByAgeChart', riskByAgeData, riskByAgeLayout);
 
-        // 3. 未來醫療開銷預估
-        const medicalCostData = [
-            {
-                x: [60, 65, 70, 75, 80],
-                y: [50000, 60000, 70000, 80000, 90000],
-                type: 'bar',
-                name: '年醫療開銷',
-                marker: { color: '#9966FF' }
-            }
-        ];
-        const medicalCostLayout = {
-            title: '未來醫療開銷預估',
-            xaxis: { title: '年齡' },
-            yaxis: { title: '醫療開銷 (元)' }
-        };
-        Plotly.newPlot('medicalCostChart', medicalCostData, medicalCostLayout);
+            // 3. 未來醫療開銷預估
+            const medicalCostData = [
+                {
+                    x: [60, 65, 70, 75, 80],
+                    y: [50000, 60000, 70000, 80000, 90000],
+                    type: 'bar',
+                    name: '年醫療開銷',
+                    marker: { color: '#9966FF' }
+                }
+            ];
+            const medicalCostLayout = {
+                title: '未來醫療開銷預估',
+                xaxis: { title: '年齡' },
+                yaxis: { title: '醫療開銷 (元)' }
+            };
+            Plotly.newPlot('medicalCostChart', medicalCostData, medicalCostLayout);
+        });
     </script>
 </body>
 </html>
