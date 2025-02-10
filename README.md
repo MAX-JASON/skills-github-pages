@@ -1,93 +1,3 @@
-
-跳至內容
-導航選單
-馬克斯-傑森
-萊西克利
-
-輸入/搜尋內容
-程式碼
-問題
-拉取請求
-操作
-專案
-安全
-洞察
-設定
-萊西克利
-/
-README.md
-在
-主要的
-
-編輯
-
-預覽
-縮排模式
-
-空間
-縮排大小
-
-2
-換行模式
-
-軟包裝
-編輯 README.md 檔案內容
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-十三
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-二十五
-二十六
-二十七
-二十八
-二十九
-三十
-31
-三十二
-33
-三十四
-三十五
-三十六
-三十七
-三十八
-三十九
-40
-41
-四十二
-43
-四十四
-四十五
-四十六
-四十七
-四十八
-49
-50
-51
-52
-53
-54
-55
-56
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
@@ -134,18 +44,68 @@ README.md
     </div>
 
     <script>
-        // 1. 新舊保單對比
-        const policyComparisonData = [
-            {
-                x: ['理賠額度', '保障項目', '保障年限'],
-                y: [20000, 1, 1], // 舊保單
-                type: 'bar',
-                name: '舊保單',
-                marker: { color: '#36A2EB' }
-            },
-            {
+        // 確保 DOM 元素加載完成後再執行
+        document.addEventListener("DOMContentLoaded", function() {
+            // 1. 新舊保單對比
+            const policyComparisonData = [
+                {
+                    x: ['理賠額度', '保障項目', '保障年限'],
+                    y: [20000, 1, 1], // 舊保單
+                    type: 'bar',
+                    name: '舊保單',
+                    marker: { color: '#36A2EB' }
+                },
+                {
+                    x: ['理賠額度', '保障項目', '保障年限'],
+                    y: [500000, 4, 10], // 新保單
+                    type: 'bar',
+                    name: '新保單',
+                    marker: { color: '#FF6384' }
+                }
+            ];
+            const policyComparisonLayout = {
+                title: '新舊保單對比',
+                xaxis: { title: '項目' },
+                yaxis: { title: '數值' },
+                barmode: 'group'
+            };
+            Plotly.newPlot('policyComparisonChart', policyComparisonData, policyComparisonLayout);
+
+            // 2. 年長者意外風險趨勢
+            const riskByAgeData = [
+                {
+                    x: [40, 50, 60, 70, 80],
+                    y: [10, 15, 25, 35, 50],
+                    type: 'scatter',
+                    mode: 'lines+markers',
+                    name: '意外風險 (%)',
+                    line: { color: '#FF6384' }
+                }
+            ];
+            const riskByAgeLayout = {
+                title: '年長者意外風險趨勢',
+                xaxis: { title: '年齡' },
+                yaxis: { title: '意外風險 (%)' }
+            };
+            Plotly.newPlot('riskByAgeChart', riskByAgeData, riskByAgeLayout);
+
+            // 3. 未來醫療開銷預估
+            const medicalCostData = [
+                {
+                    x: [60, 65, 70, 75, 80],
+                    y: [50000, 60000, 70000, 80000, 90000],
+                    type: 'bar',
+                    name: '年醫療開銷',
+                    marker: { color: '#9966FF' }
+                }
+            ];
+            const medicalCostLayout = {
+                title: '未來醫療開銷預估',
+                xaxis: { title: '年齡' },
+                yaxis: { title: '醫療開銷 (元)' }
+            };
+            Plotly.newPlot('medicalCostChart', medicalCostData, medicalCostLayout);
+        });
+    </script>
+</body>
 </html>
-用於Control + Shift + m切換tab關鍵移動焦點。或者，使用escthentab移動到頁面上的下一個互動元素。
-未選擇任何檔案
-透過拖放、選擇或貼上來附加文件。
-在主頁上編輯 LECLG/README.md · MAX-JASON/LECLG
