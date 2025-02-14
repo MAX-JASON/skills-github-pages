@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>儲蓄險綜合比較圖表</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        .chart-container {
+            margin-bottom: 40px;
+        }
+        .advantage {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-left: 5px solid #007bff;
+            margin-top: 20px;
+        }
+        .advantage h3 {
+            color: #007bff;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>南山人壽金得利 vs 國泰人壽美利雙寶 綜合比較</h1>
+
+    <!-- 功能比較柱狀圖 -->
+    <div class="chart-container">
+        <div id="comparisonChart" style="width:100%;height:600px;"></div>
+        <div class="advantage">
+            <h3>美利雙寶的優勢：靈活又全面！</h3>
+            <p>美利雙寶不僅保費結構更靈活，讓您輕鬆規劃財務，還提供更高的現金價值成長速度，讓您的錢更快長大！此外，資金靈活性更高，隨時可以提領或調整，滿足您的各種需求。醫療功能也更有保障，讓您安心無憂！</p>
+        </div>
+    </div>
+
+    <!-- 複利滾存對比曲線圖 -->
+    <div class="chart-container">
+        <div id="compoundChart" style="width:100%;height:600px;"></div>
+        <div class="advantage">
+            <h3>美利雙寶的優勢：讓您的錢翻倍成長！</h3>
+            <p>美利雙寶的年化報酬率更高，14 年後您的現金價值將比南山人壽金得利多出不少！複利的力量讓您的錢像滾雪球一樣越滾越大，輕鬆實現財務目標。選擇美利雙寶，就是選擇讓您的未來更豐盛！</p>
+        </div>
+    </div>
+
+    <script>
+        // 功能比較柱狀圖
+        const comparisonData = [
+            {
+                x: ['現金價值成長速度', '保費結構', '保障範圍', '資金靈活性', '醫療功能'],
+                y: [8, 7, 9, 6, 5],
+                name: '南山人壽金得利',
+                type: 'bar'
+            },
+            {
+                x: ['現金價值成長速度', '保費結構', '保障範圍', '資金靈灵活性', '醫療功能'],
+                y: [9, 8, 8, 7, 6],
+                name: '國泰人壽美利雙寶',
+                type: 'bar'
+            }
+        ];
+
+        const comparisonLayout = {
+            title: '儲蓄險功能比較',
+            xaxis: { title: '比較項目' },
+            yaxis: { title: '評分 (1-10)' },
+            barmode: 'group'
+        };
+
+        Plotly.newPlot('comparisonChart', comparisonData, comparisonLayout);
+
+        // 複利滾存對比曲線圖
+        const principal = 100000;
+        const years = 14;
+        const rates = {
+            nanshan: 0.03, // 南山人壽金得利年化報酬率 3%
+            guotai: 0.035 // 國泰人壽美利雙寶年化報酬率 3.5%
+        };
+
+        const calculateCompound = (rate) => {
+            const values = [];
+            for (let i = 0; i <= years; i++) {
+                values.push(principal * Math.pow(1 + rate, i));
+            }
+            return values;
+        };
+
+        const nanshanValues = calculateCompound(rates.nanshan);
+        const guotaiValues = calculateCompound(rates.guotai);
+
+        const compoundData = [
+            {
+                x: [...Array(years + 1).keys()], // 年份 (0 到 14)
+                y: nanshanValues,
+                name: '南山人壽金得利',
+                mode: 'lines+markers',
+                line: { color: 'blue' }
+            },
+            {
+                x: [...Array(years + 1).keys()],
+                y: guotaiValues,
+                name: '國泰人壽美利雙寶',
+                mode: 'lines+markers',
+                line: { color: 'red' }
+            }
+        ];
+
+        const compoundLayout = {
+            title: '複利滾存對比曲線圖',
+            xaxis: { title: '年份' },
+            yaxis: { title: '現金價值 (元)' },
+            showlegend: true
+        };
+
+        Plotly.newPlot('compoundChart', compoundData, compoundLayout);
+    </script>
+</body>
+</html>
